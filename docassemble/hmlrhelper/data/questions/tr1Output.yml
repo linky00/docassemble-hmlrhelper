@@ -111,13 +111,16 @@ attachment:
     # then we will need the transferee to sign, so we need name,contact info and address for witnesses too
   code: signatory_variables
 field: doc_review    
-buttons:
-  code: |
-    [{'continue':"Send for Esignature"}]
-    #if electronic_signatures:
-    #  [{'continue':"Send for Esignature"}]
-    #else:
-    #  [{'exit':"Exit"}]
+buttons: 
+  code: proceed_buttons
+
+---
+code: |
+  #[{'continue':"Send for Esignature"}]
+  if electronic_signatures:
+    proceed_buttons = [{'continue':"Send for Esignature"}]
+  else:
+    proceed_buttons = [{'exit':"Exit"}]
 ---
 code: |
   signatory_variables = dict()

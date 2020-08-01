@@ -6,7 +6,7 @@ mandatory: true
 code: |
   #do something here to confirm we are in test mode 
   
-  electronic_signatures = True
+  electronic_signatures
 
   title_numbers = 'SK12345678'
   property_address = 'Malfoy Mansion, Narrow Lane, Wiltshire, SN14 1AZ'
@@ -103,6 +103,12 @@ include:
 ---
 include:
   - docusignQuestions.yml
+---
+question: |
+  Do you want to test electronic signing of a sample TR1?
+subquestion: |
+  By pushing a test TR1 to Docusign for signatures
+yesno: electronic_signatures
 ---
 question: Not in Docusign Test Mode
 event: not_in_docusign_test_mode
