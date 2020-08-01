@@ -19,17 +19,23 @@ if the transfer is being signed by an attorney or company, or at the direction o
     and transferees and noting that transferres don't always need to sign).
     * A simple way to improve on this would be the use of a template file where Box 12 (Execution) was extended to use 
     the full space available on page three.
+* Similarly, addresses are limited to 60 characters in order to fit onto a single line, so you may need to get creative with choosing which address elements are important!    
 * The conveyancer still needs to date the deed at the end of the process and submit it to HMLR 'manually'. 
 
 ## Installation & Prerequisites
 
-1. Install [docassemble.docusign](https://pypi.org/project/docassemble.docusign/) first. Follow the setup and testing process within *docassemble.docusign* to ensure that you can psuh documents into DocuSign for signature successfully.
+1. Install [docassemble.docusign](https://pypi.org/project/docassemble.docusign/) first. Follow the setup and testing process within *docassemble.docusign* to ensure that you can push documents into DocuSign for signature successfully.
 
-1. Install this package (docassemble.hmlrhelper) from within your Docassemble package management screen using either the GitHub or PyPi addresses:
-
-    - [https://github.com/mattpennington/docassemble-hmlrhelper](https://github.com/mattpennington/docassemble-hmlrhelper)
+1. Install this docassemble.hmlrhelper package from within your Docassemble package management screen using the latest stable verison available in PyPi:
 
     - [docassemble.hmlrhelper on PyPi](#)
+
+## Github Repository
+    
+**Note:** Only install from the Github Repository if you want to input into the development of the extension: 
+    
+- [https://github.com/mattpennington/docassemble-hmlrhelper](https://github.com/mattpennington/docassemble-hmlrhelper)
+
 
 ## Configuration & Testing
 
@@ -66,6 +72,14 @@ test mode (`test-mode: True`) run the test interview at:
     1. (Repeat for all transferees)
 1. The conveyancer is asked to review and approve the document
 
+## Going Live
+
+In order to put this interview live, you will need to set test mode to false (`test-mode: False`)
+in your the configuration for *docassemble.docusign*. You may also need to follow the steps to move 
+your application out of the Sandbox and into Docusign's live environment if you haven't done this 
+for other documents submitted using *docassemble.docusign* already. Check out the *docassemble.docusign*
+documentation to find out how to do this.
+
 ## Future Possible Improvements
 
 * Using the HMLR API to lookup the property address/reference, though arguably the conveyancer should have these details to hand anyway 
@@ -76,6 +90,8 @@ reaches them and before they undertake the signing.
 * Whilst this implementation of the helper uses Docusign's SMS functionality for Recipient Identity Authentication, its worth noting that Phone Authentication could be made available too for signatories/witnesses that are unable to receive SMS.
 * Docusign also supports Knowledge-Based Authentication (KBA) which might prove useful in future.
 * HMLR are looking to a future beyond Witnessed electronic signatures to [Qualified electronic signatures](https://www.gov.uk/government/news/hm-land-registry-to-accept-electronic-signatures), therefore further extension through Docusign may be needed in future.
+* The implementation uses Signer Recipients rather than Witness Recipients in Docusign for the witness signatures 
+as (at the time this version was published) *docassemble.docusign* doesn't have support for [Witness Recipients](https://developers.docusign.com/esign-rest-api/reference/Envelopes/EnvelopeRecipients/#witness-recipient)
 
 ## Disclaimer
 

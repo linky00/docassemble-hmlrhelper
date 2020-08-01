@@ -1,5 +1,6 @@
 ---
 modules:
+  - docassemble.docusign.da_docusign
   - .objects
 ---
 #control the flow of the interview
@@ -72,6 +73,7 @@ question: |
 fields:
   - Property Address: property_address
     datatype: text
+    max: 60
   - note: |
       Insert address including postcode (if any) or other description of the property, for example ‘land adjoining 2 Acacia Avenue’.
 ---
@@ -133,11 +135,14 @@ objects:
 ---
 question: |
   About the Transferees
+subquestion: |
+  A current limitation of this form is that it will only work up to a maximum of four signatories (and their associated witnesses)
 fields:
   - How many Transferees are there?: transferees.target_number
     datatype: integer
     min: 1
-    max: 4
+    #we can only fit a maximum of 4 signatories (and their witnesses) on the form
+    max: 4 - len(transferors)
 ---
 code: |
   transferees[i].name.first
@@ -182,8 +187,10 @@ subquestion: |
   Give the address, email and mobile number for the ${ordinal(i)} person to be shown as a registered proprietor.
 fields:
   - Email: transferees[i].name.email
+    datatype: email
   - Mobile (in +44 format): transferees[i].name.mobile_number
   - Full Address (inc. postcode): transferees[i].address.address
+    max: 60
 ---
 question: |
   Please add the details of the WITNESS for the ${ordinal(i)} transferee.
@@ -195,6 +202,7 @@ fields:
     required: False
   - Last name: transferees[i].witness.name.last
   - Full Address (inc. postcode): transferees[i].witness.address.address
+    max: 60
 ---
 question: |
   Please add the contact information for WITNESS for the ${ordinal(i)} transferee.
@@ -202,6 +210,7 @@ subquestion: |
   Give the email and mobile number for the ${ordinal(i)} WITNESS.
 fields:
   - Email: transferees[i].witness.name.email
+    datatype: email
   - Mobile (in +44 format): transferees[i].witness.name.mobile_number
 ---
 ##################### GET TRANSFEROR DETAILS #####################
@@ -250,6 +259,7 @@ subquestion: |
   Give the email and mobile number for the ${ordinal(i)} person transferring the property.
 fields:
   - Email: transferors[i].name.email
+    datatype: email
   - Mobile (in +44 format): transferors[i].name.mobile_number
 ---
 question: |
@@ -262,6 +272,7 @@ fields:
     required: False
   - Last name: transferors[i].witness.name.last
   - Full Address (inc. postcode): transferors[i].witness.address.address
+    max: 60
 ---
 question: |
   Please add the contact information for WITNESS for the ${ordinal(i)} transferor.
@@ -269,6 +280,7 @@ subquestion: |
   Give the email and mobile number for the ${ordinal(i)} WITNESS.
 fields:
   - Email: transferors[i].witness.name.email
+    datatype: email
   - Mobile (in +44 format): transferors[i].witness.name.mobile_number
 ---
 question: |
@@ -290,7 +302,13 @@ fields:
       is: 'trust_three'
     required: True
 ---
-#initialise some default values for variables if they haven't been populated already (though remember that docassemble works backwards through definitions so maybe this should be earlier?)
+include:
+  - docusignBuilder.yml
+---
+include:
+  - docusignQuestions.yml
+---
+#initialise some default values for variables if they haven't been populated elsewhere (docassemble works backwards)
 ---
 code: |
   consideration_one_text = ''

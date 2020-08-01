@@ -37,8 +37,10 @@ subquestion: |
   </ul>
 attachment:
   name: Completed TR1
-  filename: tr1-form
+  filename: transfer_of_whole_doc
   pdf template file: TR1__2019-06-17_.pdf
+  variable name: transfer_of_whole_doc
+  editable: False
   field code:
     #    - User Saw Intro: |
     #        ${ user_saw_intro }
@@ -130,23 +132,30 @@ attachment:
     # 12 Execution
     # if anything has been added in section 11 (which would include consideration choice of 4), or >1 transferree added (so declaration of trust shall be required)
     # then we will need the transferee to sign, so we need name,contact info and address for witnesses too
-    - 26: |
-        % for transferor in transferors:
-          Signed as a deed by ${transferor.name.full(middle="full").upper()} _________________
-
-          In the presence of: _________________
-          ${transferor.witness.name.full(middle="full").upper()} of ${transferor.witness.address.address.upper()}
-
-        % endfor
-        % if (len(additional_provisions) > 0) or (len(transferees) > 1):
-          % for transferee in transferees:
-            Signed as a deed by ${transferee.name.full(middle="full").upper()} _________________
+    if electronic_signatures:
+      - 26: |
+          % for transferor in transferors:
+            Signed as a deed by ${transferor.name.full(middle="full").upper()} _________________
 
             In the presence of: _________________
-            ${transferee.witness.name.full(middle="full").upper()} of ${transferee.witness.address.address.upper()}
+            ${transferor.witness.name.full(middle="full").upper()} of ${transferor.witness.address.address.upper()}
 
           % endfor
-        % endif
+          % if (len(additional_provisions) > 0) or (len(transferees) > 1):
+            % for transferee in transferees:
+              Signed as a deed by ${transferee.name.full(middle="full").upper()} _________________
+
+              In the presence of: _________________
+              ${transferee.witness.name.full(middle="full").upper()} of ${transferee.witness.address.address.upper()}
+
+            % endfor
+          % endif
+#fields:
+#  if electronic_signatures:
+#    - Send for Esignature: doc_review
 buttons:
-  - Exit: exit
+  if electronic_signatures:
+    - Send for Esignature: doc_review
+  else:
+    - Exit: exit
 ---
