@@ -2,9 +2,32 @@ modules:
   - docassemble.docusign.da_docusign
   - .objects
 ---
-#mandatory: true
-#code: |
-#  #do something here to confirm we are in test mode
+mandatory: true
+code: |
+  #do something here to confirm we are in test mode 
+  
+  electronic_signatures = True
+
+  title_numbers = 'SK12345678'
+  property_address = 'Malfoy Mansion, Narrow Lane, Wiltshire, SN14 1AZ'
+
+  consideration_one = 'Yes'
+  consideration_two = ''
+  consideration_three = ''
+  consideration_one_text = 'Three Hundred Thousand (300000)'
+  consideration_three_text = ''
+  
+  transfer_one = 'Yes'
+  transfer_two = ''
+  transfer_modifications_text = ''
+  
+  trust_one = 'Yes'
+  trust_two = ''
+  trust_three = ''
+  trust_text = ''
+  
+  additional_provisions = ''
+
 ---
 objects:
   transferors: DAList.using(object_type=TRParty, auto_gather = False)
@@ -44,6 +67,7 @@ code: |
   transferees[0].name.first = "Harry"
   transferees[0].name.middle = ""
   transferees[0].name.last = "Potter"
+  transferees[0].address.address = "Second Floor, The Burrow, Ottery St. Catchpole, United Kingdom, OS1 1DS"
   transferees[0].name.email = "hello+tr0@tonic.works"
   transferees[0].name.mobile_number = "+441143830382"
   transferees[0].witness.name.first = "Ron"
@@ -57,6 +81,7 @@ code: |
   transferees[1].name.first = "Ginevra"
   transferees[1].name.middle = "Molly"
   transferees[1].name.last = "Weasley"
+  transferees[1].address.address = "First Floor, The Burrow, Ottery St. Catchpole, United Kingdom, OS1 1DS"
   transferees[1].name.email = "hello+tr1@tonic.works"
   transferees[1].name.mobile_number = "+441143830382"
   transferees[1].witness.name.first = "Percy"
@@ -86,3 +111,5 @@ subquestion: |
 
   Set test-mode to True under docusign in your Docassemble config if you want to run this.
 ---
+include:
+  - tr1Output.yml
