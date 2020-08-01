@@ -6,6 +6,7 @@ modules:
 mandatory: True
 code: |
   user_saw_intro
+  electronic_signatures
 
   title_numbers
   property_address
@@ -53,6 +54,10 @@ subquestion: |
     <p>A tool to prepare a TR1 and optionally continue to submit it for esignature through Docusign</p>
     <p><b>PLEASE NOTE:</b> This tool is currently limited to person to person transfers and does not handle UK or Overseas Company transfers.</p>
 field: user_saw_intro
+---
+question: |
+  Do you want to capture the additional information needed to enable this form to be signed electronically?
+yesno: electronic_signatures
 ---
 question: |
   Title number(s) of the property?
@@ -136,10 +141,12 @@ fields:
 ---
 code: |
   transferees[i].name.first
-  transferees[i].name.email
+  if electronic_signatures
+    transferees[i].name.email
   if (len(additional_provisions) > 0) or (transferees.target_number > 1):
     transferees[i].witness.name.first
-    transferees[i].witness.name.email
+    if electronic_signatures
+      transferees[i].witness.name.email
   transferees[i].finished = True
 #---
 #table: transferees.table
@@ -175,18 +182,19 @@ subquestion: |
   Give the address, email and mobile number for the ${ordinal(i)} person to be shown as a registered proprietor.
 fields:
   - Email: transferees[i].name.email
-  - Mobile: transferees[i].name.mobile_number
+  - Mobile (in +44 format): transferees[i].name.mobile_number
   - Full Address (inc. postcode): transferees[i].address.address
 ---
 question: |
-  Please add the name of the WITNESS for the ${ordinal(i)} transferee.
+  Please add the details of the WITNESS for the ${ordinal(i)} transferee.
 subquestion: |
-  Give the full name of the ${ordinal(i)} WITNESS.
+  Give the full name and address of the ${ordinal(i)} WITNESS.
 fields:
   - First name: transferees[i].witness.name.first
   - Middle name(s): transferees[i].witness.name.middle
     required: False
   - Last name: transferees[i].witness.name.last
+  - Full Address (inc. postcode): transferees[i].witness.address.address
 ---
 question: |
   Please add the contact information for WITNESS for the ${ordinal(i)} transferee.
@@ -194,8 +202,7 @@ subquestion: |
   Give the email and mobile number for the ${ordinal(i)} WITNESS.
 fields:
   - Email: transferees[i].witness.name.email
-  - Mobile: transferees[i].witness.name.mobile_number
-  - Full Address (inc. postcode): transferees[i].witness.address.address
+  - Mobile (in +44 format): transferees[i].witness.name.mobile_number
 ---
 ##################### GET TRANSFEROR DETAILS #####################
 objects:
@@ -203,9 +210,11 @@ objects:
 ---
 code: |
   transferors[i].name.first
-  transferors[i].name.email
+  if electronic_signatures
+    transferors[i].name.email
   transferors[i].witness.name.first
-  transferors[i].witness.name.email
+  if electronic_signatures
+    transferors[i].witness.name.email
   transferors[i].finished = True
 ---
 table: transferors.table
@@ -241,17 +250,18 @@ subquestion: |
   Give the email and mobile number for the ${ordinal(i)} person transferring the property.
 fields:
   - Email: transferors[i].name.email
-  - Mobile: transferors[i].name.mobile_number
+  - Mobile (in +44 format): transferors[i].name.mobile_number
 ---
 question: |
-  Please add the name of the WITNESS for the ${ordinal(i)} transferor.
+  Please add the details of the WITNESS for the ${ordinal(i)} transferor.
 subquestion: |
-  Give the full name of the ${ordinal(i)} WITNESS.
+  Give the full name and address of the ${ordinal(i)} WITNESS.
 fields:
   - First name: transferors[i].witness.name.first
   - Middle name(s): transferors[i].witness.name.middle
     required: False
   - Last name: transferors[i].witness.name.last
+  - Full Address (inc. postcode): transferors[i].witness.address.address
 ---
 question: |
   Please add the contact information for WITNESS for the ${ordinal(i)} transferor.
@@ -259,8 +269,7 @@ subquestion: |
   Give the email and mobile number for the ${ordinal(i)} WITNESS.
 fields:
   - Email: transferors[i].witness.name.email
-  - Mobile: transferors[i].witness.name.mobile_number
-  - Full Address (inc. postcode): transferors[i].witness.address.address
+  - Mobile (in +44 format): transferors[i].witness.name.mobile_number
 ---
 question: |
   Declaration of trust. The transferee is more than one person and...

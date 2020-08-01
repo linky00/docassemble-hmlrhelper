@@ -5,7 +5,7 @@ A docassemble extension that allows you to submit [HM Land Registry (HMLR) forms
 This extension makes use of the awesome [docassemble.docusign](https://pypi.org/project/docassemble.docusign/) 
 extension created by the lovely people at [Radiant Law](https://radiantlaw.com/).
 
-##Current limitations
+## Current limitations
 
 This implementation is currently limited to TR1's, and is intended to meet the 
 requirements for electronic signatures as set out in the *13.3 Our Requirements* section 
@@ -27,7 +27,7 @@ if the transfer is being signed by an attorney or company, or at the direction o
 
 1. Install this package (docassemble.hmlrhelper) from within your Docassemble package management screen using either the GitHub or PyPi addresses:
 
-    - [docassemble.hmlrhelper on Github](#)
+    - [https://github.com/mattpennington/docassemble-hmlrhelper](https://github.com/mattpennington/docassemble-hmlrhelper)
 
     - [docassemble.hmlrhelper on PyPi](#)
 
@@ -36,7 +36,7 @@ if the transfer is being signed by an attorney or company, or at the direction o
 After you've tested *docassemble.docusign* above, and with the extension still in 
 test mode (`test-mode: True`) run the test interview at:
 
-{YOUR INTERVIEW URL}..SOMEOTHER CHARACTERS
+{YOUR SERVER BASE URL}/interview?i=docassemble.hmlrhelper:data/questions/test.yml.
 
 1. The interview will allow you to push a sample populated TR1 into DocuSign and run through a working demo of the signatory process.
 1. The DocuSign sandbox will send all emails to the the email address of the DocuSign sandbox user you created when setting up *docassemble.docusign*
@@ -77,11 +77,11 @@ reaches them and before they undertake the signing.
 * Docusign also supports Knowledge-Based Authentication (KBA) which might prove useful in future.
 * HMLR are looking to a future beyond Witnessed electronic signatures to [Qualified electronic signatures](https://www.gov.uk/government/news/hm-land-registry-to-accept-electronic-signatures), therefore further extension through Docusign may be needed in future.
 
-##Disclaimer
+## Disclaimer
 
 This is a beta version and as such may contain bugs/unexpected output.
 
-##Software License & Copyright Notice
+## Software License & Copyright Notice
 
 Copyright (c) 2020 Matt Pennington - Tonic Workflows
 
@@ -103,6 +103,6 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-##TR1 Copyright Notice
+## TR1 Copyright Notice
 
 The *Transfer of whole of registered titles (TR1)* form is (c) Crown copyright (ref: LR/HO).

@@ -24,12 +24,16 @@ include:
 ---
 mandatory: True
 question: |
-  Your Application Notice (TR1) is now available to download
+  Please review the completed Application Notice (TR1)
 subquestion: |
+  <p>Please download and review the completed TR1 below. You can also use the "e-mail this document" box if you need to send it to a colleague, client or yourself.</p>
+  % if electronic_signatures:
+    <p>Once you have reviewed the form click the "Send for Esignature" button to send the document to the parties</p>
+  % endif
   <p>Please note:</p>
   <ul>
-     <li>The form is not saved on our website, therefore please download it and keep it somewhere safe.</li>
-     <li>Remember to DATE the form before submitting it to HMLR</li>
+     <li>Unless you are logged in, this form is not saved within the platform therefore please download it and keep it somewhere safe.</li>
+     <li>Remember that you will <b>still need to date the form</b> before submitting it to HMLR</li>
   </ul>
 attachment:
   name: Completed TR1
