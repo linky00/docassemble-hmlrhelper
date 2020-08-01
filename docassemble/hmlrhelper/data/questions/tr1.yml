@@ -1,0 +1,148 @@
+---
+metadata:
+  title: |
+    Transfer of whole of registered title(s) (TR1) Helper
+  short title: |
+    TR1
+  description: |
+    A tool to prepare a TR1 and optionally continue to submit it for esignature through Docusign
+  authors:
+    - name: Matthew Pennington
+      organization: n/a
+  revision_date: 2020-07-27
+  tags:
+    - TR1
+    - HMLR
+---
+features:
+  question back button: True
+  navigation back button: False
+  progress bar: True
+---
+include:
+  - tr1Questions.yml
+---
+mandatory: True
+question: |
+  Your Application Notice (TR1) is now available to download
+subquestion: |
+  <p>Please note:</p>
+  <ul>
+     <li>The form is not saved on our website, therefore please download it and keep it somewhere safe.</li>
+     <li>Remember to DATE the form before submitting it to HMLR</li>
+  </ul>
+attachment:
+  name: Completed TR1
+  filename: tr1-form
+  pdf template file: TR1__2019-06-17_.pdf
+  field code:
+    #    - User Saw Intro: |
+    #        ${ user_saw_intro }
+
+    # 1. TITLE NUMBERS
+    - 1: title_numbers
+
+    # 2. PROPERTY ADDRESS
+    - 2: property_address
+
+    # 3. NOT DATED UNTIL AFTERWARDS
+    #    - 3: |
+    #        ${ format_date(today(), format='dd/MM/yyyy') }
+
+    # For UK incorporated companies/LLPs - Registered number of company
+    #- 5: '5'
+    # For overseas companies - Territory of incorporation
+    #- 6: '6'
+    # For overseas companies - Registered number in the United Kingdom
+    #- 7: '7'
+    # For UK incorporated companies/LLPs - Registered number of company
+    #- 9: '9'
+    # For overseas companies - Territory of incorporation
+    #- 10: '10'
+    # For overseas companies - Registered number in the United Kingdom
+    #- 11: '11'
+
+    # 8. CONSIDERATION
+    # [CHECKBOX] The transferor has received from the transferee for the property the following sum (in words and figures):
+    - 13: consideration_one
+    # the following sum (in words and figures)
+    - 14: consideration_one_text
+    # [CHECKBOX] The transfer is not for money or anything that has a monetary value
+    - 15: consideration_two
+    # [CHECKBOX] Insert other receipt as appropriate:
+    - 16: consideration_three
+    # the value of the receipt
+    - 17: consideration_three_text
+
+    # 9. The transferor transfers with
+    # [CHECKBOX]
+    - 18: transfer_one
+    # [CHECKBOX]
+    - 19: transfer_two
+    # A text field....
+    - 20: transfer_modifications_text
+
+    # 10 Declaration of trust
+    # [CHECKBOX] they are to hold the property on trust for themselves as joint tenants
+    - 21: trust_one
+    # [CHECKBOX] they are to hold the property on trust for themselves as tenants in common in equal shares
+    - 22: trust_two
+    # [CHECKBOX] they are to hold the property on trust
+    - 23: trust_three
+    # text for they are to hold the property on trust
+    - 24: trust_text
+    # 11. Additional Provisions
+    - 25: additional_provisions
+  fields:
+    # 4. TRANSFERORS
+    #generate some text to autopopulate some fields
+    #use of comma_list() would be good here if we didn't need to uppercase the names. Probably a more elegant way to do this.
+    - 4: |
+        <%
+          counter = 0
+          transferors_text = ''
+          for transferor in transferors:
+            if counter > 0 and counter < transferors.number():
+              transferors_text += " and "
+            transferors_text += transferor.name.full(middle="full").upper()
+            counter += 1
+        %>${transferors_text}
+    # 5. Transferee for entry in the register
+    - 8: |
+        <%
+          counter = 0
+          transferees_text = ''
+          for transferee in transferees:
+            if counter > 0 and counter < transferees.number():
+              transferees_text += " and "
+            transferees_text += transferee.name.full(middle="full").upper()
+            counter += 1
+        %>${transferees_text}
+    # 6. Transferee’s intended address(es) for service for entry in the register
+    - 12: |
+        % for transferee in transferees:
+          ${transferee.name.full(middle="full").upper()}, ${transferee.address.address.upper()}
+        % endfor
+    # 12 Execution
+    # if anything has been added in section 11 (which would include consideration choice of 4), or >1 transferree added (so declaration of trust shall be required)
+    # then we will need the transferee to sign, so we need name,contact info and address for witnesses too
+    - 26: |
+        % for transferor in transferors:
+          Signed as a deed by ${transferor.name.full(middle="full").upper()} _________________
+
+          In the presence of: _________________
+          ${transferor.witness.name.full(middle="full").upper()} of ${transferor.witness.address.address.upper()}
+
+        % endfor
+        % if (len(additional_provisions) > 0) or (len(transferees) > 1):
+          % for transferee in transferees:
+            Signed as a deed by ${transferee.name.full(middle="full").upper()} _________________
+
+            In the presence of: _________________
+            ${transferee.witness.name.full(middle="full").upper()} of ${transferee.witness.address.address.upper()}
+
+          % endfor
+        % endif
+buttons:
+  - Exit: exit
+---
