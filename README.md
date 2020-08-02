@@ -31,7 +31,7 @@ if the transfer is being signed by an attorney or company, or at the direction o
 
 1. Install this docassemble.hmlrhelper package from within your Docassemble package management screen using the latest stable verison available in PyPi:
 
-    - [docassemble.hmlrhelper on PyPi](#)
+    - [docassemble.hmlrhelper on PyPi](https://pypi.org/project/docassemble.hmlrhelper/0.0.1/)
 
 ## Github Repository
     
