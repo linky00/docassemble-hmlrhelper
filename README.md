@@ -45,7 +45,7 @@ if the transfer is being signed by an attorney or company, or at the direction o
 After you've tested *docassemble.docusign* above, and with the extension still in 
 test mode (`test-mode: True`) run the test interview at:
 
-{YOUR SERVER BASE URL}/interview?i=docassemble.hmlrhelper:data/questions/test.yml.
+{YOUR SERVER BASE URL}/interview?i=docassemble.hmlrhelper:data/questions/test.yml
 
 1. The interview will allow you to choose to either:
   - push a sample populated TR1 into DocuSign and run through a working demo of the signatory process, or;
@@ -58,8 +58,24 @@ test mode (`test-mode: True`) run the test interview at:
 
 ## Interview Process within Docassemble
 
-1. something...
-1. Document is pushed to Docusign and workflow completed in Docassemble
+**Ensure you have followed the "Configuration & Testing" guide before you start a real interview**
+
+The TR1 interview is at: {YOUR SERVER BASE URL}/interview?i=docassemble.hmlrhelper:data/questions/tr1.yml
+
+The interview runs as follows:
+
+1. Option to choose whether we are preparing a document for esignature or 'manual' processing (we ask fewer questions if we don't need email addressses and mobile numbers fo esignatures)
+1. Capture title number and property address
+1. Choose whether the transfeor is transferring with full title guarantee
+1. Set the consideration
+1. Add any additional provisions
+1. Add details of transferrors and their witnesses
+1. Choose how many transferees there are
+1. The number of transferees and additional provisions determes whether the transferees will be signing the document or not, and therefore how much information we need to capture
+1. The document is generated and you have the opportunity to review it and go back and make changes if needed
+1. You can then continue, at which stage you are asked to add the details for the person who will be responsible for checking over the document and then doing something with it (e.g. sending it to HMLR)
+1. The completed document is pushed to Docusign
+1. The workflow in Docassemble is completed, and the process for obtaining signatures is controlled by Docusing (starting with an email to the first transferor asking for a signature)
 
 ## Process within Docusign
 
