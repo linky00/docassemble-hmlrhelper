@@ -9,7 +9,7 @@ subquestion: |
 fields:
   - First Name: deliver_to.name.first
   - Last Name: deliver_to.name.last
-  - Email: deliver_to.name.email
+  - Email: deliver_to.email
     datatype: email
 ---
 question: Interview Completed
