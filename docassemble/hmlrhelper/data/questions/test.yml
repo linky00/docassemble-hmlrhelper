@@ -1,3 +1,20 @@
+---
+metadata:
+  title: |
+    Test script for the (TR1) Helper
+  short title: |
+    TR1 Test
+  description: |
+    A tool to test the (TR1) Helper is working
+  authors:
+    - name: Matthew Pennington
+      organization: n/a
+  revision_date: 2020-07-27
+  error help: |
+    We are sorry but an error has occurred.
+    Please email [Tonic Workflows](mailto:workflow@tonic.works) for support.
+  exit url: /
+---
 modules:
   - docassemble.docusign.da_docusign
   - .objects
@@ -105,6 +122,9 @@ code: |
   transferees.gathered = True
 ---
 include:
+  - tr1Output.yml
+---
+include:
   - docusignBuilder.yml
 ---
 include:
@@ -133,6 +153,3 @@ subquestion: |
   This interview is only for testing the TR1 populates correctly when docusign is in test mode
 
   Set test-mode to True under docusign in your Docassemble config if you want to run this.
----
-include:
-  - tr1Output.yml
