@@ -141,16 +141,15 @@ fields:
   - How many Transferees are there?: transferees.target_number
     datatype: integer
     min: 1
-    #we can only fit a maximum of 4 signatories (and their witnesses) on the form
-    max: 4 - len(transferors)
+    max: 4
 ---
 code: |
   transferees[i].name.first
-  if electronic_signatures
+  if electronic_signatures:
     transferees[i].name.email
   if (len(additional_provisions) > 0) or (transferees.target_number > 1):
     transferees[i].witness.name.first
-    if electronic_signatures
+    if electronic_signatures:
       transferees[i].witness.name.email
   transferees[i].finished = True
 #---
@@ -172,14 +171,18 @@ code: |
 #field: review_transferees
 ---
 question: |
-  Please add the name of the ${ordinal(i)} transferee.
+  Please add the name and address of the ${ordinal(i)} transferee.
 subquestion: |
   Give the full name of the ${ordinal(i)} person to be shown as a registered proprietor.
+  
+  Give the intended address for service for the ${ordinal(i)} transferee for entry in the register
 fields:
   - First name: transferees[i].name.first
   - Middle name(s): transferees[i].name.middle
     required: False
   - Last name: transferees[i].name.last
+  - Service Address (inc. postcode): transferees[i].address.address
+    max: 60  
 ---
 question: |
   Please add the contact information for the ${ordinal(i)} transferee.
@@ -189,8 +192,6 @@ fields:
   - Email: transferees[i].name.email
     datatype: email
   - Mobile (in +44 format): transferees[i].name.mobile_number
-  - Full Address (inc. postcode): transferees[i].address.address
-    max: 60
 ---
 question: |
   Please add the details of the WITNESS for the ${ordinal(i)} transferee.
@@ -219,10 +220,10 @@ objects:
 ---
 code: |
   transferors[i].name.first
-  if electronic_signatures
+  if electronic_signatures:
     transferors[i].name.email
   transferors[i].witness.name.first
-  if electronic_signatures
+  if electronic_signatures:
     transferors[i].witness.name.email
   transferors[i].finished = True
 ---
