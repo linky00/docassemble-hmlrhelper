@@ -2,18 +2,26 @@
 mandatory: True
 question: |
   Please review the completed Application Notice (TR1)
-subquestion: |
-  <p>Please download and review the completed TR1 below. You can also use the "e-mail this document" box if you need to send it to a colleague, client or yourself.</p>
-  % if electronic_signatures:
-    <p>Once you have reviewed the form click the "Send for Esignature" button to send the document to the parties</p>
-  % endif
-  <p>Please note:</p>
-  <ul>
-     <li>Unless you are logged in, this form is not saved within the platform therefore please download it and keep it somewhere safe.</li>
-     <li>Remember that you will <b>still need to date the form</b> before submitting it to HMLR</li>
-  </ul>
+#field: what_next
+field: doc_review
+#action buttons:
+#  code: |  
+#    if electronic_signatures:
+#      [{'action':'send_for_esignature','label':'Send for Esignature'}]
+#    else:
+#      [{'action':'exit','label':'Complete another TR1'}]
 attachment:
   name: Completed TR1
+  description: |
+    <p>Please download and review the completed TR1 below. You can also use the "e-mail this document" box if you need to send it to a colleague, client or yourself.</p>
+    % if electronic_signatures:
+    <p>Once you have reviewed the form click the "Send for Esignature" button to send the document to the parties</p>
+    % endif
+    <p>Please note:</p>
+    <ul>
+       <li>Unless you are logged in, this form is not saved within the platform therefore please download it and keep it somewhere safe.</li>
+       <li>Remember that you will <b>still need to date the form</b> before submitting it to HMLR</li>
+    </ul>
   filename: transfer_of_whole_doc
   pdf template file: TR1__2019-06-17_.pdf
   variable name: transfer_of_whole_doc
@@ -110,17 +118,12 @@ attachment:
     # if anything has been added in section 11 (which would include consideration choice of 4), or >1 transferree added (so declaration of trust shall be required)
     # then we will need the transferee to sign, so we need name,contact info and address for witnesses too
   code: signatory_variables
-field: doc_review    
-buttons: 
-  code: proceed_buttons
-
 ---
-code: |
-  #[{'continue':"Send for Esignature"}]
-  if electronic_signatures:
-    proceed_buttons = [{'continue':"Send for Esignature"}]
-  else:
-    proceed_buttons = [{'reset':"Complete another TR1"}]
+#code: |
+#  if electronic_signatures:
+#    proceed_buttons = [{'action':'continue','label':'Send for Esignature'}]
+#  else:
+#    proceed_buttons = [{'action':'exit','label':'Complete another TR1'}]
 ---
 code: |
   signatory_variables = dict()
@@ -147,3 +150,4 @@ content: |
 
     % endfor
   % endif
+---

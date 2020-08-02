@@ -13,6 +13,10 @@ metadata:
   tags:
     - TR1
     - HMLR
+  error help: |
+    We are sorry but an error has occurred.
+    Please email [Tonic Workflows](mailto:workflow@tonic.works) for support.
+  exit url: /
 ---
 features:
   question back button: True

@@ -1,14 +1,19 @@
 ---
-mandatory: true
+#event: send_for_esignature
+mandatory: True
 code: |
-  deliver_to
-  doc_review
-  signature_request = DocuSign()
-  data_sent, data_received, status_code = signature_request.get_signatures(all_recipients,document_bundle,send_immediately=True,email_subject="Important: Please sign your transfer deed")
-  if status_code == 201:
-    signature_success
+  if electronic_signatures:
+    deliver_to
+    doc_review
+    signature_request = DocuSign()
+    data_sent, data_received, status_code = signature_request.get_signatures(all_recipients,document_bundle,send_immediately=True,email_subject="Important: Please sign your transfer deed")
+    if status_code == 201:
+      signature_success
+    else:
+      signature_fail
   else:
-    signature_fail
+    doc_review
+    finish_without_esignature  
 ---
 code: |
   routingOrder = 1
