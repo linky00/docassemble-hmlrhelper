@@ -152,23 +152,6 @@ code: |
     if electronic_signatures:
       transferees[i].witness.name.email
   transferees[i].finished = True
-#---
-#table: transferees.table
-#rows: transferees
-#columns:
-#  - Name: row_item
-#edit:
-#  - name.first
-#---
-#question: |
-#  ALL Transferee(s)
-#subquestion: |
-#  So far you have added ${transferees.number_as_word()} Transferee(s).
-#
-#  ${transferees.table}
-#
-#  ${transferees.add_action()}
-#field: review_transferees
 ---
 question: |
   Please add the name and address of the ${ordinal(i)} transferee.
