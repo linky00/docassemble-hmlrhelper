@@ -2,7 +2,6 @@
 mandatory: True
 question: |
   Please review the completed Application Notice (TR1)
-#field: what_next
 field: doc_review
 #action buttons:
 #  code: |  
