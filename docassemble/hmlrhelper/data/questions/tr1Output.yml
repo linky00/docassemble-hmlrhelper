@@ -14,7 +14,7 @@ attachment:
   description: |
     <p>Please download and review the completed TR1 below. You can also use the "e-mail this document" box if you need to send it to a colleague, client or yourself.</p>
     % if electronic_signatures:
-    <p>Once you have reviewed the form click the "Send for Esignature" button to send the document to the parties</p>
+    <p>Once you have reviewed the form click the "Continue" button to send the document to the parties</p>
     % endif
     <p>Please note:</p>
     <ul>
