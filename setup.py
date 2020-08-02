@@ -53,7 +53,7 @@ setup(name='docassemble.hmlrhelper',
       url='https://tonic.works',
       packages=find_packages(),
       namespace_packages=['docassemble'],
-      install_requires=[],
+      install_requires=['docassemble.docusign'],
       zip_safe=False,
       package_data=find_package_data(where='docassemble/hmlrhelper/', package='docassemble.hmlrhelper'),
      )
