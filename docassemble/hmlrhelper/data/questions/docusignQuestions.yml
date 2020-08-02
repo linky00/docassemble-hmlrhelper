@@ -37,7 +37,7 @@ subquestion: |
   <p>The person who needs to check the document over will receive a notification once everyone has signed it.</p>
   <p>If you need to check the status of the document you can review it through Docusign at any time.</p>
 buttons:
-  - Exit: exit
+  - Complete another TR1: reset
 ---
 question: Attempt to Send document For Signature Not Successful
 event: signature_fail

@@ -8,6 +8,10 @@ code: |
   
   electronic_signatures
 
+  if electronic_signatures == False:
+    test_mobile_number = "+441143830382"
+    test_email = "no-reply@tonic.works"
+    
   title_numbers = 'SK12345678'
   property_address = 'Malfoy Mansion, Narrow Lane, Wiltshire, SN14 1AZ'
 
@@ -28,75 +32,77 @@ code: |
   
   additional_provisions = ''
 
+  deliver_to.name.first = "Neville"
+  deliver_to.name.last = "Longbottom"
+  deliver_to.email = test_email
 ---
 objects:
   transferors: DAList.using(object_type=TRParty, auto_gather = False)
   transferees: DAList.using(object_type=TRParty, auto_gather = False)
 ---
 code: |
+  transferors.clear()
+  
   transferors.appendObject(TRParty)
   transferors[0].name.first = "Ariana"
   transferors[0].name.middle = ""
   transferors[0].name.last = "Dumbledore"
-  transferors[0].name.email = "hello+tr0@tonic.works"
-  transferors[0].name.mobile_number = "+441143830382"
+  transferors[0].name.email = test_email
+  transferors[0].name.mobile_number = test_mobile_number
   transferors[0].witness.name.first = "Aberforth"
   transferors[0].witness.name.middle = ""
   transferors[0].witness.name.last = "Dumbledore"
   transferors[0].witness.address.address = "The Hogs Head Inn, Hogsmeade, United Kingdom, SK1 1DS"
-  transferors[0].witness.name.email = "hello+trw0@tonic.works"
-  transferors[0].witness.name.mobile_number = "+441143830382"
+  transferors[0].witness.name.email = test_email
+  transferors[0].witness.name.mobile_number = test_mobile_number
 
-  transferors.appendObject(TRParty)
-  transferors[1].name.first = "Albus"
-  transferors[1].name.middle = "Percival Wulfric Brian"
-  transferors[1].name.last = "Dumbledore"
-  transferors[1].name.email = "hello+tr1@tonic.works"
-  transferors[1].name.mobile_number = "+441143830382"
-  transferors[1].witness.name.first = "Aurelius"
-  transferors[1].witness.name.middle = ""
-  transferors[1].witness.name.last = "Dumbledore"
-  transferors[1].witness.address.address = "The Hogs Head Inn, Hogsmeade, United Kingdom, SK1 1DS"
-  transferors[1].witness.name.email = "hello+trw1@tonic.works"
-  transferors[1].witness.name.mobile_number = "+441143830382"
+  #transferors.appendObject(TRParty)
+  #transferors[1].name.first = "Albus"
+  #transferors[1].name.middle = "Percival Wulfric Brian"
+  #transferors[1].name.last = "Dumbledore"
+  #transferors[1].name.email = test_email
+  #transferors[1].name.mobile_number = test_mobile_number
+  #transferors[1].witness.name.first = "Aurelius"
+  #transferors[1].witness.name.middle = ""
+  #transferors[1].witness.name.last = "Dumbledore"
+  #transferors[1].witness.address.address = "The Hogs Head Inn, Hogsmeade, United Kingdom, SK1 1DS"
+  #transferors[1].witness.name.email = test_email
+  #transferors[1].witness.name.mobile_number = test_mobile_number
 
   transferors.gathered = True
 ---
 code: |
+  transferees.clear()
+  
   transferees.appendObject(TRParty)
   transferees[0].name.first = "Harry"
   transferees[0].name.middle = ""
   transferees[0].name.last = "Potter"
-  transferees[0].address.address = "Second Floor, The Burrow, Ottery St. Catchpole, United Kingdom, OS1 1DS"
-  transferees[0].name.email = "hello+tr0@tonic.works"
-  transferees[0].name.mobile_number = "+441143830382"
+  transferees[0].address.address = "Second Floor, The Burrow, Ottery St. Catchpole, OS1 1DS"
+  transferees[0].name.email = test_email
+  transferees[0].name.mobile_number = test_mobile_number
   transferees[0].witness.name.first = "Ron"
   transferees[0].witness.name.middle = ""
   transferees[0].witness.name.last = "Weasley"
-  transferees[0].witness.address.address = "Second Floor, The Burrow, Ottery St. Catchpole, United Kingdom, OS1 1DS"
-  transferees[0].witness.name.email = "hello+trw0@tonic.works"
-  transferees[0].witness.name.mobile_number = "+441143830382"
+  transferees[0].witness.address.address = "Second Floor, The Burrow, Ottery St. Catchpole, OS1 1DS"
+  transferees[0].witness.name.email = test_email
+  transferees[0].witness.name.mobile_number = test_mobile_number
 
-  transferees.appendObject(TRParty)
-  transferees[1].name.first = "Ginevra"
-  transferees[1].name.middle = "Molly"
-  transferees[1].name.last = "Weasley"
-  transferees[1].address.address = "First Floor, The Burrow, Ottery St. Catchpole, United Kingdom, OS1 1DS"
-  transferees[1].name.email = "hello+tr1@tonic.works"
-  transferees[1].name.mobile_number = "+441143830382"
-  transferees[1].witness.name.first = "Percy"
-  transferees[1].witness.name.middle = "Ignatius"
-  transferees[1].witness.name.last = "Weasley"
-  transferees[1].witness.address.address = "First Floor, The Burrow, Ottery St. Catchpole, United Kingdom, OS1 1DS"
-  transferees[1].witness.name.email = "hello+trw1@tonic.works"
-  transferees[1].witness.name.mobile_number = "+441143830382"
+  #transferees.appendObject(TRParty)
+  #transferees[1].name.first = "Ginevra"
+  #transferees[1].name.middle = "Molly"
+  #transferees[1].name.last = "Weasley"
+  #transferees[1].address.address = "First Floor, The Burrow, Ottery St. Catchpole, OS1 1DS"
+  #transferees[1].name.email = test_email
+  #transferees[1].name.mobile_number = test_mobile_number
+  #transferees[1].witness.name.first = "Percy"
+  #transferees[1].witness.name.middle = "Ignatius"
+  #transferees[1].witness.name.last = "Weasley"
+  #transferees[1].witness.address.address = "First Floor, The Burrow, Ottery St. Catchpole, OS1 1DS"
+  #transferees[1].witness.name.email = test_email
+  #transferees[1].witness.name.mobile_number = test_mobile_number
 
   transferees.gathered = True
----
-code: |
-  deliver_to.name.first = "Neville"
-  deliver_to.name.last = "Longbottom"
-  deliver_to.email = "hello+nl@tonic.works"
 ---
 include:
   - docusignBuilder.yml
@@ -109,6 +115,17 @@ question: |
 subquestion: |
   By pushing a test TR1 to Docusign for signatures
 yesno: electronic_signatures
+---
+question: |
+  What's your mobile number and email address?
+subquestion: |
+  <p>Please enter your mobile number in order to receive 2FA SMS's as you test the signature process, and email address so you can receive the Docusign email notifications.</p>
+fields:
+  - Mobile (in +44 format): test_mobile_number
+    required: True
+  - Email: test_email
+    datatype: email
+    required: True
 ---
 question: Not in Docusign Test Mode
 event: not_in_docusign_test_mode
