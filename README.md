@@ -2,6 +2,8 @@
 
 A docassemble extension that allows you to submit [HM Land Registry (HMLR) forms](https://www.gov.uk/topic/land-registration/searches-fees-forms) to [DocuSign](https://www.docusign.com) through the [DocuSign API](https://developers.docusign.com/) from inside Docassemble interviews.
 
+If for any reason you can't/don't want to use electronic signatures in certain circumstances, you can also still generate a TR1 for signing 'manually' instead.
+
 This extension makes use of the awesome [docassemble.docusign](https://pypi.org/project/docassemble.docusign/) 
 extension created by the lovely people at [Radiant Law](https://radiantlaw.com/).
 
@@ -20,6 +22,7 @@ if the transfer is being signed by an attorney or company, or at the direction o
     * A simple way to improve on this would be the use of a template file where Box 12 (Execution) was extended to use 
     the full space available on page three.
 * Similarly, addresses are limited to 60 characters in order to fit onto a single line, so you may need to get creative with choosing which address elements are important!    
+* The person creating the interview is responsible for ensure unique emial/mobile numbers are used for each signatory. The interview does not perform any checks for duplicates.
 * The conveyancer still needs to date the deed at the end of the process and submit it to HMLR 'manually'. 
 
 ## Installation & Prerequisites
@@ -44,9 +47,14 @@ test mode (`test-mode: True`) run the test interview at:
 
 {YOUR SERVER BASE URL}/interview?i=docassemble.hmlrhelper:data/questions/test.yml.
 
-1. The interview will allow you to push a sample populated TR1 into DocuSign and run through a working demo of the signatory process.
-1. The DocuSign sandbox will send all emails to the the email address of the DocuSign sandbox user you created when setting up *docassemble.docusign*
-1. The test interview asks for a mobile phone number that will be used for all SMS's for the Two Factor Authentication. Please use your own mobile number! :-)
+1. The interview will allow you to choose to either:
+  - push a sample populated TR1 into DocuSign and run through a working demo of the signatory process, or;
+  - proceed without signing electronically and just populate the TR1 for signing 'manually' 
+1. If you choose to sign electronically: 
+  - the DocuSign sandbox will send all emails to the the email address of the DocuSign sandbox user you created when setting up *docassemble.docusign*
+  - the test interview asks for a mobile phone number that will be used for all SMS's for the Two Factor Authentication. Please use your own mobile number! :-)
+  - as you will be using the same mobile number for every test signatory, you will only be asked to complete 2FA once. In a live scenario the mobile number of each recipient 
+    would be different and therefore each unique mobile number provided would have to complete 2FA
 
 ## Interview Process within Docassemble
 

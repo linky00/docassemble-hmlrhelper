@@ -42,11 +42,11 @@ code: |
           'pageNumber': '3'
         }
       ]
-    #signatory['smsAuthentication'] = {
-    #    'senderProvidedNumbers': ['+447543389333']
-    #  }
-    #signatory['idCheckConfigurationName'] = 'SMS Auth $'
-    #signatory['requireIdLookup'] = True
+    signatory['smsAuthentication'] = {
+        'senderProvidedNumbers': [r.name.mobile_number]
+      }
+    signatory['idCheckConfigurationName'] = 'SMS Auth $'
+    signatory['requireIdLookup'] = True
     all_recipients.append(signatory)
 
     tabYPosition = tabYPosition + 20
@@ -97,11 +97,11 @@ code: |
             'pageNumber': '3'
         },
       ]
-    #witness['smsAuthentication'] = {
-    #    'senderProvidedNumbers': ['+447543389333']
-    #  }
-    #witness['idCheckConfigurationName'] = 'SMS Auth $'
-    #witness['requireIdLookup'] = True
+    witness['smsAuthentication'] = {
+        'senderProvidedNumbers': [r.witness.name.mobile_number]
+      }
+    witness['idCheckConfigurationName'] = 'SMS Auth $'
+    witness['requireIdLookup'] = True
     all_recipients.append(witness)
 
     tabYPosition = tabYPosition + 40
@@ -135,11 +135,11 @@ code: |
           'pageNumber': '3'
         }
       ]
-    #signatory['smsAuthentication'] = {
-    #    'senderProvidedNumbers': ['+447543389333']
-    #  }
-    #signatory['idCheckConfigurationName'] = 'SMS Auth $'
-    #signatory['requireIdLookup'] = True
+    signatory['smsAuthentication'] = {
+        'senderProvidedNumbers': [r.name.mobile_number]
+      }
+    signatory['idCheckConfigurationName'] = 'SMS Auth $'
+    signatory['requireIdLookup'] = True
     all_recipients.append(signatory)
 
     tabYPosition = tabYPosition + 20
@@ -190,22 +190,22 @@ code: |
             'pageNumber': '3'
         },
       ]
-    #witness['smsAuthentication'] = {
-    #    'senderProvidedNumbers': ['+447543389333']
-    #  }
-    #witness['idCheckConfigurationName'] = 'SMS Auth $'
-    #witness['requireIdLookup'] = True
+    witness['smsAuthentication'] = {
+        'senderProvidedNumbers': [r.witness.name.mobile_number]
+      }
+    witness['idCheckConfigurationName'] = 'SMS Auth $'
+    witness['requireIdLookup'] = True
     all_recipients.append(witness)
 
     tabYPosition = tabYPosition + 40
     routingOrder = routingOrder + 1
 
-  #  new_recipient = {}
-  #  new_recipient['name'] = deliver_to.name.firstlast()
-  #  new_recipient['email'] = deliver_to.email
-  #  new_recipient['group'] = 'certifiedDeliveries'
-  #  new_recipient['routingOrder'] = routingOrder + 1
-  #  all_recipients.append(new_recipient)
+    new_recipient = {}
+    new_recipient['name'] = deliver_to.name.firstlast()
+    new_recipient['email'] = deliver_to.email
+    new_recipient['group'] = 'certifiedDeliveries'
+    new_recipient['routingOrder'] = routingOrder + 1
+    all_recipients.append(new_recipient)
 
   document_bundle=[
         {
