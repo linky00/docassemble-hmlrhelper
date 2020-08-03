@@ -73,18 +73,18 @@ code: |
   transferors[0].witness.name.email = test_email
   transferors[0].witness.name.mobile_number = test_mobile_number
 
-  #transferors.appendObject(TRParty)
-  #transferors[1].name.first = "Albus"
-  #transferors[1].name.middle = "Percival Wulfric Brian"
-  #transferors[1].name.last = "Dumbledore"
-  #transferors[1].name.email = test_email
-  #transferors[1].name.mobile_number = test_mobile_number
-  #transferors[1].witness.name.first = "Aurelius"
-  #transferors[1].witness.name.middle = ""
-  #transferors[1].witness.name.last = "Dumbledore"
-  #transferors[1].witness.address.address = "The Hogs Head Inn, Hogsmeade, United Kingdom, SK1 1DS"
-  #transferors[1].witness.name.email = test_email
-  #transferors[1].witness.name.mobile_number = test_mobile_number
+  transferors.appendObject(TRParty)
+  transferors[1].name.first = "Albus"
+  transferors[1].name.middle = "Percival Wulfric Brian"
+  transferors[1].name.last = "Dumbledore"
+  transferors[1].name.email = test_email
+  transferors[1].name.mobile_number = test_mobile_number
+  transferors[1].witness.name.first = "Aurelius"
+  transferors[1].witness.name.middle = ""
+  transferors[1].witness.name.last = "Dumbledore"
+  transferors[1].witness.address.address = "The Hogs Head Inn, Hogsmeade, United Kingdom, SK1 1DS"
+  transferors[1].witness.name.email = test_email
+  transferors[1].witness.name.mobile_number = test_mobile_number
 
   transferors.gathered = True
 ---
@@ -105,19 +105,19 @@ code: |
   transferees[0].witness.name.email = test_email
   transferees[0].witness.name.mobile_number = test_mobile_number
 
-  #transferees.appendObject(TRParty)
-  #transferees[1].name.first = "Ginevra"
-  #transferees[1].name.middle = "Molly"
-  #transferees[1].name.last = "Weasley"
-  #transferees[1].address.address = "First Floor, The Burrow, Ottery St. Catchpole, OS1 1DS"
-  #transferees[1].name.email = test_email
-  #transferees[1].name.mobile_number = test_mobile_number
-  #transferees[1].witness.name.first = "Percy"
-  #transferees[1].witness.name.middle = "Ignatius"
-  #transferees[1].witness.name.last = "Weasley"
-  #transferees[1].witness.address.address = "First Floor, The Burrow, Ottery St. Catchpole, OS1 1DS"
-  #transferees[1].witness.name.email = test_email
-  #transferees[1].witness.name.mobile_number = test_mobile_number
+  transferees.appendObject(TRParty)
+  transferees[1].name.first = "Ginevra"
+  transferees[1].name.middle = "Molly"
+  transferees[1].name.last = "Weasley"
+  transferees[1].address.address = "First Floor, The Burrow, Ottery St. Catchpole, OS1 1DS"
+  transferees[1].name.email = test_email
+  transferees[1].name.mobile_number = test_mobile_number
+  transferees[1].witness.name.first = "Percy"
+  transferees[1].witness.name.middle = "Ignatius"
+  transferees[1].witness.name.last = "Weasley"
+  transferees[1].witness.address.address = "First Floor, The Burrow, Ottery St. Catchpole, OS1 1DS"
+  transferees[1].witness.name.email = test_email
+  transferees[1].witness.name.mobile_number = test_mobile_number
 
   transferees.gathered = True
 ---
