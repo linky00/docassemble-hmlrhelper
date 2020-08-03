@@ -116,6 +116,7 @@ reaches them and before they undertake the signing.
 * HMLR are looking to a future beyond Witnessed electronic signatures to [Qualified electronic signatures](https://www.gov.uk/government/news/hm-land-registry-to-accept-electronic-signatures), therefore further extension through Docusign may be needed in future.
 * The implementation uses Signer Recipients rather than Witness Recipients in Docusign for the witness signatures 
 as (at the time this version was published) *docassemble.docusign* doesn't have support for [Witness Recipients](https://developers.docusign.com/esign-rest-api/reference/Envelopes/EnvelopeRecipients/#witness-recipient)
+* The Reviewer should arguably be responsible for dating the document.
 
 ## Disclaimer
 
